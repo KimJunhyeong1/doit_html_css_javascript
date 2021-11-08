@@ -1,11 +1,66 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>연습문제 2</title>
-</head>
-<body>
-	
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>연습문제 2</title>
+    <style>
+      form {
+        margin-bottom: 30px;
+      }
+      input[type="text"] {
+        width: 30px;
+        height: 20px;
+        text-align: center;
+      }
+      button {
+        margin-left: 10px;
+      }
+      table {
+        width: 300px;
+      }
+      table,
+      td {
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+      }
+      td {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input type="text" id="rCount" value="1" />행
+      <input type="text" id="cCount" value="1" />열
+      <button id="submit-button">작성</button>
+    </form>
+    <div id="contents"></div>
+
+    <script>
+      const submit_button = document.querySelector("#submit-button");
+      const contents = document.querySelector("#contents");
+
+      const submit_button_handle_click = (event) => {
+        const row_input = document.querySelector("#rCount");
+        const col_input = document.querySelector("#cCount");
+
+        let newTable = document.createElement("table");
+        for (let i = 0; i < row_input.value; i++) {
+          let tr = document.createElement("tr");
+          for (let j = 0; j < col_input.value; j++) {
+            let td = document.createElement("td");
+            td.innerText = i + ", " + j;
+            tr.appendChild(td);
+          }
+          newTable.appendChild(tr);
+        }
+        contents.appendChild(newTable);
+
+        event.preventDefault();
+      };
+
+      submit_button.addEventListener("click", submit_button_handle_click);
+    </script>
+  </body>
 </html>
